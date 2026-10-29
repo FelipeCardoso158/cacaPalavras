@@ -1,0 +1,385 @@
+/* =========================
+   CAÇAPALAVRAS — ESTILO
+========================= */
+
+:root {
+    --fundo: #f4f6fc;
+    --cartao: #ffffff;
+    --texto: #202945;
+    --texto-suave: #78819b;
+    --primaria: #6258e8;
+    --primaria-escura: #4e44d0;
+    --borda: #e1e5f0;
+    --correta: #35a879;
+    --presente: #e8ad42;
+    --ausente: #8992a8;
+    --sombra: 0 18px 55px rgba(44, 52, 100, 0.09);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: var(--texto);
+    background:
+        radial-gradient(ellipse at top left, #e8e8ff 0%, transparent 38%),
+        radial-gradient(ellipse at bottom right, #e0f6f0 0%, transparent 35%),
+        var(--fundo);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cabeçalho */
+
+header {
+    width: 100%;
+    padding: 32px 20px 24px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 850;
+    letter-spacing: -1.8px;
+    background: linear-gradient(120deg, #6258e8, #329caa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+header p {
+    margin: 9px 0 0;
+    color: var(--texto-suave);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Área principal */
+
+main {
+    width: 100%;
+    max-width: 620px;
+    padding: 0 18px 32px;
+}
+
+#game {
+    padding: 28px 24px 30px;
+    background: var(--cartao);
+    border: 1px solid rgba(225, 229, 240, 0.9);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+#game h2 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+    font-weight: 750;
+}
+
+#game>p:not(#message) {
+    max-width: 410px;
+    margin: 0 auto 24px;
+    color: var(--texto-suave);
+    font-size: 0.93rem;
+    line-height: 1.65;
+}
+
+/* Tabuleiro */
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    width: min(100%, 330px);
+    margin: 26px auto 18px;
+}
+
+#board>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    min-width: 0;
+    border: 2px solid var(--borda);
+    border-radius: 10px;
+    background: #fbfcff;
+    color: var(--texto);
+    font-size: clamp(1.1rem, 4vw, 1.65rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Letras digitadas */
+
+#board>div:not(:empty) {
+    border-color: #aaa5f5;
+    background: #f7f6ff;
+}
+
+/* Cores das respostas */
+
+#board>div.correta,
+#keyboard button.correta {
+    background: var(--correta);
+    border-color: var(--correta);
+    color: #ffffff;
+}
+
+#board>div.presente,
+#keyboard button.presente {
+    background: var(--presente);
+    border-color: var(--presente);
+    color: #ffffff;
+}
+
+#board>div.ausente,
+#keyboard button.ausente {
+    background: var(--ausente);
+    border-color: var(--ausente);
+    color: #ffffff;
+}
+
+/* Mensagens */
+
+#message {
+    min-height: 24px;
+    margin: 12px 0 18px;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+/* Teclado virtual */
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 20px auto 24px;
+}
+
+#keyboard>div {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+}
+
+#keyboard button {
+    min-width: 0;
+    height: 46px;
+    flex: 1;
+    padding: 0 5px;
+    border: 1px solid #e5e7f0;
+    border-radius: 8px;
+    background: #edf0f8;
+    color: #343b56;
+    font-size: 0.95rem;
+    font-weight: 750;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#keyboard button:hover {
+    background: #e2e5f3;
+    transform: translateY(-2px);
+}
+
+#keyboard button:active {
+    transform: scale(0.95);
+}
+
+#keyboard button.correta,
+#keyboard button.presente,
+#keyboard button.ausente {
+    color: #ffffff;
+    border-color: transparent;
+}
+
+#keyboard button[data-action],
+#keyboard button.acao {
+    flex: 1.5;
+    font-size: 0.76rem;
+}
+
+/* Botões principais */
+
+#submit-button,
+#delete-button,
+#restart-button {
+    min-height: 46px;
+    margin: 4px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-weight: 750;
+    cursor: pointer;
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+#submit-button {
+    background: var(--primaria);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(98, 88, 232, 0.22);
+}
+
+#submit-button:hover {
+    background: var(--primaria-escura);
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(98, 88, 232, 0.28);
+}
+
+#delete-button {
+    background: #edf0f8;
+    color: #454d68;
+}
+
+#delete-button:hover {
+    background: #e1e5f2;
+    transform: translateY(-2px);
+}
+
+#restart-button {
+    background: #e4f6ed;
+    color: #25845f;
+}
+
+#restart-button:hover {
+    background: #d2efdf;
+    transform: translateY(-2px);
+}
+
+button:focus-visible {
+    outline: 3px solid #aaa5f5;
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Rodapé */
+
+footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 18px 15px 24px;
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+}
+
+/* Animações suaves */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#game {
+    animation: aparecer 0.45s ease both;
+}
+
+#board>div.correta,
+#board>div.presente,
+#board>div.ausente {
+    animation: virar 0.3s ease both;
+}
+
+@keyframes virar {
+    from {
+        transform: scale(0.88);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Celulares */
+
+@media (max-width: 480px) {
+    header {
+        padding: 25px 15px 20px;
+    }
+
+    #game {
+        padding: 24px 13px;
+        border-radius: 20px;
+    }
+
+    #game>p:not(#message) {
+        font-size: 0.88rem;
+    }
+
+    #board {
+        gap: 6px;
+        width: min(100%, 300px);
+    }
+
+    #board>div {
+        border-radius: 8px;
+    }
+
+    #keyboard {
+        gap: 6px;
+    }
+
+    #keyboard>div {
+        gap: 4px;
+    }
+
+    #keyboard button {
+        height: 42px;
+        padding: 0 2px;
+        border-radius: 6px;
+        font-size: 0.82rem;
+    }
+
+    #submit-button,
+    #delete-button,
+    #restart-button {
+        padding: 11px 13px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

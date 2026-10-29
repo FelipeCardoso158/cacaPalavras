@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Descubra a palavra secreta no CaçaPalavras. Use as dicas e teste seu vocabulário!"
+  >
+
+  <meta name="theme-color" content="#f4f6fc">
+
+  <title>CaçaPalavras | Desafio de palavras</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>CaçaPalavras</h1>
+    <p>Descubra a palavra secreta, uma letra de cada vez.</p>
+  </header>
+
+  <main>
+    <section id="game" aria-labelledby="titulo-jogo">
+      <div class="cabecalho-jogo">
+        <span class="etiqueta">DESAFIO DE PALAVRAS</span>
+        <h2 id="titulo-jogo">Vamos jogar?</h2>
+
+        <p>
+          Encontre a palavra de cinco letras em até seis tentativas.
+          As cores vão ajudar você!
+        </p>
+      </div>
+
+      <div class="area-dica">
+        <span class="icone-dica" aria-hidden="true">💡</span>
+        <div>
+          <strong>Dica</strong>
+          <p id="game-hint">
+            Leia a descrição e tente descobrir a palavra.
+          </p>
+        </div>
+      </div>
+
+      <div
+        id="board"
+        role="group"
+        aria-label="Tabuleiro com seis tentativas e cinco letras por palavra"
+      ></div>
+
+      <p id="message" role="status" aria-live="polite">
+        Boa sorte! Digite sua primeira palavra.
+      </p>
+
+      <div
+        id="keyboard"
+        aria-label="Teclado virtual"
+      ></div>
+
+      <div class="acoes-jogo">
+        <button id="submit-button" type="button">
+          Conferir palavra
+        </button>
+
+        <button id="delete-button" type="button">
+          Apagar letra
+        </button>
+
+        <button id="restart-button" type="button" hidden>
+          Jogar novamente
+        </button>
+      </div>
+
+      <div class="legenda">
+        <p><span class="cor legenda-correta"></span> Letra no lugar certo</p>
+        <p><span class="cor legenda-presente"></span> Letra em outro lugar</p>
+        <p><span class="cor legenda-ausente"></span> Letra não encontrada</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>CaçaPalavras · Um desafio para sua mente.</p>
+  </footer>
+</body>
+</html>
